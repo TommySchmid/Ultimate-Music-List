@@ -34,7 +34,7 @@ class Form extends Component {
                     onChange={this.updateValueHandler}
                     value={this.state.artist}
                 />
-                <button>Add</button>
+                <button>Submit</button>
             </form>
         );
     }
