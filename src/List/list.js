@@ -13,6 +13,10 @@ class List extends Component {
     }
 
     componentDidMount() {
+        this.loadMusicList();
+    }
+
+    loadMusicList = () => {
         axios.get('/.json')
             .then(response => {
                 this.setState({ musicList: Object.values(response.data) });
@@ -40,7 +44,9 @@ class List extends Component {
             <Auxiliary>
                 <div className="Headline">
                     <div>Ultimate Music List</div>
-                    <Form />
+                    <Form 
+                    loaded={this.loadMusicList}
+                    />
                     {musicListItems()}
                 </div>
             </Auxiliary>

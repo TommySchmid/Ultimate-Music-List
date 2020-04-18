@@ -13,6 +13,12 @@ class Form extends Component {
             .then(response => {
                 console.log(response);
             })
+            .then(response => {
+                this.props.loaded();
+                this.setState({
+                    artist: ''
+                });
+            })
             .catch(error => {
                 console.log(error);
             });
