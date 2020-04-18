@@ -9,7 +9,7 @@ class Form extends Component {
     formSubmitHandler = (event) => {
         event.preventDefault();
         const post = this.state;
-        axios.post('/artists/.json', post)
+        axios.post('/.json', post)
             .then(response => {
                 console.log(response);
             })
@@ -22,7 +22,6 @@ class Form extends Component {
         this.setState({
             artist: event.target.value
         });
-        console.log(this.state);
     }
 
     render() {

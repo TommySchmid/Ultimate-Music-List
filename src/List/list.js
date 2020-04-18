@@ -9,14 +9,14 @@ import './list.css';
 
 class List extends Component {
     state = {
-        musicList: []
+        musicList: ''
     }
 
     componentDidMount() {
-        axios.get('/artists/.json')
+        axios.get('/.json')
             .then(response => {
-                this.setState({ musicList: response.data });
-                console.log(this.state.musicList);
+                this.setState({ musicList: Object.values(response.data) });
+                console.log(this.state.musicList, 'response.data');
             })
             .catch(error => {
                 console.log('error caught', error);
@@ -25,22 +25,23 @@ class List extends Component {
 
     render() {
 
-        // let musicListItems = () => (
-        //     this.state.musicList.map(listItem => (
-        //         <div>
-        //         <ListItem 
-        //             inputs={listItem.artist}
-        //         />
-        //         </div>
-        //     ))
-        // );
+        let pulledMusic = Object.values(this.state.musicList);
+
+        let musicListItems = () => (
+            pulledMusic.map((listItem) => (
+                <ListItem
+                    key={listItem.artist}
+                    inputs={listItem.artist}
+                />
+            ))
+        );
 
         return (
             <Auxiliary>
                 <div className="Headline">
                     <div>Ultimate Music List</div>
                     <Form />
-                {/* {musicListItems()} */}
+                    {musicListItems()}
                 </div>
             </Auxiliary>
         );
