@@ -3,7 +3,8 @@ import axios from '../hoc/axios';
 
 class Form extends Component {
     state = {
-        artist: ''
+        artist: '',
+        btnIsDisabled: true
     }
 
     formSubmitHandler = (event) => {
@@ -16,7 +17,8 @@ class Form extends Component {
             .then(response => {
                 this.props.loaded();
                 this.setState({
-                    artist: ''
+                    artist: '',
+                    btnIsDisabled: true
                 });
             })
             .catch(error => {
@@ -26,7 +28,8 @@ class Form extends Component {
 
     updateValueHandler = (event) => {
         this.setState({
-            artist: event.target.value
+            artist: event.target.value,
+            btnIsDisabled: false
         });
     }
 
@@ -39,7 +42,7 @@ class Form extends Component {
                     onChange={this.updateValueHandler}
                     value={this.state.artist}
                 />
-                <button>Submit</button>
+                <button disabled={this.state.btnIsDisabled}>Submit</button>
             </form>
         );
     }
