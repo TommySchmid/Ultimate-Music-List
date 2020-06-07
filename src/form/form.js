@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../hoc/axios';
+import { connect } from 'react-redux';
 
 class Form extends Component {
     state = {
@@ -36,7 +37,8 @@ class Form extends Component {
     render() {
 
         return (
-            <form onSubmit={this.formSubmitHandler}>
+            // <form onSubmit={this.formSubmitHandler}>
+            <form onSubmit={this.props.onFormSubmit}>
                 <input
                     type="text"
                     onChange={this.updateValueHandler}
@@ -48,4 +50,16 @@ class Form extends Component {
     }
 }
 
-export default Form;
+const mapStateToProps = state => {
+    return {
+        musicList: state.musicList
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return{
+        onFormSubmit: () => dispatch({type: 'FORM_SUBMIT'})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
