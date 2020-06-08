@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import axios from '../hoc/axios';
+import { connect } from 'react-redux';
 
 import Auxiliary from '../hoc/Auxiliary/Auxiliary';
-import ListItem from './listItem/listItem';
 import Form from '../form/form';
+import { fetch_music_list } from '../store/actions/actions';
+
 
 import './list.css';
 
 class List extends Component {
-    state = {
-        musicList: ''
-    }
 
     componentDidMount() {
-        this.loadMusicList();
+        this.props.fetchMusicList();
     }
 
+    // For form submit through redux - next commit
     loadMusicList = () => {
         axios.get('/.json')
             .then(response => {
@@ -29,17 +29,6 @@ class List extends Component {
 
     render() {
 
-        let pulledMusic = Object.values(this.state.musicList);
-
-        let musicListItems = () => (
-            pulledMusic.map((listItem) => (
-                <ListItem
-                    key={listItem.artist}
-                    inputs={listItem.artist}
-                />
-            ))
-        );
-
         return (
             <Auxiliary>
                 <div className="Headline">
@@ -47,11 +36,25 @@ class List extends Component {
                     <Form 
                     loaded={this.loadMusicList}
                     />
-                    {musicListItems()}
+                    {this.props.fetchedList.map(musicListItem => (
+                        <div key={musicListItem.artist}>{musicListItem.artist}</div>
+                    ))}
                 </div>
             </Auxiliary>
         );
     }
 }
 
-export default List;
+const mapStateToProps = state => {
+    return {
+        fetchedList: state.musicList
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchMusicList: () => dispatch(fetch_music_list())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
