@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from '../hoc/axios';
+import { connect } from 'react-redux';
+
+import { form_submit } from '../store/actions/actions';
+// import * as actionTypes from '../store/actions/actions';
 
 class Form extends Component {
     state = {
@@ -37,6 +41,8 @@ class Form extends Component {
 
         return (
             <form onSubmit={this.formSubmitHandler}>
+            {/* // For form submit through redux - next commit */}
+            {/* // <form onSubmit={this.props.onFormSubmit}> */}
                 <input
                     type="text"
                     onChange={this.updateValueHandler}
@@ -48,4 +54,16 @@ class Form extends Component {
     }
 }
 
-export default Form;
+const mapStateToProps = state => {
+    return {
+        musicList: state.musicList
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return{
+        onFormSubmit: () => dispatch(form_submit())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
