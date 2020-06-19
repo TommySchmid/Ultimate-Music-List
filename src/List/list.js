@@ -34,7 +34,7 @@ class List extends Component {
                 <div className="Headline">
                     <div>Ultimate Music List</div>
                     <Form 
-                    loaded={this.loadMusicList}
+                    loaded={this.props.fetchMusicList}
                     />
                     {this.props.fetchedList.map(musicListItem => (
                         <div key={musicListItem.artist}>{musicListItem.artist}</div>

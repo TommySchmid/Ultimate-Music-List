@@ -46,8 +46,7 @@ class Form extends Component {
                     onChange={this.updateValueHandler}
                     value={this.state.artist}
                 />
-                <button disabled={this.state.btnIsDisabled}>Submit</button>
-                <div onClick={this.props.onFormSubmit}>Click Here</div>
+                <div disabled={this.state.btnIsDisabled} onClick={() => this.props.onFormSubmit(this.state)}>Submit</div>
             </form>
         );
     }
@@ -61,7 +60,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        onFormSubmit: () => dispatch(form_submit({artist: 'Tommy', btnIsDisabled: false}))
+        onFormSubmit: (data) => dispatch(form_submit(data))
     };
 };
 
