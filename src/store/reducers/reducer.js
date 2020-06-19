@@ -8,7 +8,8 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FORM_SUBMIT:
             return {
-                ...state
+                ...state,
+                musicList: Object.values(action.data)
             }
         case actionTypes.FETCH_MUSIC_LIST:
             return {
