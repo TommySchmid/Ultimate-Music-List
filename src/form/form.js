@@ -9,25 +9,6 @@ class Form extends Component {
         btnIsDisabled: true
     }
 
-    // formSubmitHandler = (event) => {
-    //     event.preventDefault();
-    //     const post = this.state;
-    //     axios.post('/.json', post)
-    //         .then(response => {
-    //             console.log(response);
-    //         })
-    //         .then(response => {
-    //             this.props.loaded();
-    //             this.setState({
-    //                 artist: '',
-    //                 btnIsDisabled: true
-    //             });
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // }
-
     updateValueHandler = (event) => {
         this.setState({
             artist: event.target.value,
@@ -36,17 +17,26 @@ class Form extends Component {
     }
 
     render() {
-
         return (
-            <form>
-            {/* <form onSubmit={this.formSubmitHandler}> */}
-            {/* <form onSubmit={this.props.onFormSubmit}> */}
+            <form onSubmit={(event) => {
+                event.preventDefault();
+                this.props.onFormSubmit(this.state);
+                this.setState({
+                    artist: '',
+                    btnIsDisabled: false
+                });
+            }}>
                 <input
                     type="text"
                     onChange={this.updateValueHandler}
                     value={this.state.artist}
                 />
-                <div disabled={this.state.btnIsDisabled} onClick={() => this.props.onFormSubmit(this.state)}>Submit</div>
+                <button 
+                    disabled={this.state.btnIsDisabled} 
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        this.props.onFormSubmit(this.state);
+                }}>Submit</button>
             </form>
         );
     }
