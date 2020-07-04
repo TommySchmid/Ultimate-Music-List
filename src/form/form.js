@@ -23,7 +23,7 @@ class Form extends Component {
                 this.props.onFormSubmit(this.state);
                 this.setState({
                     artist: '',
-                    btnIsDisabled: false
+                    btnIsDisabled: true
                 });
             }}>
                 <input
@@ -31,6 +31,7 @@ class Form extends Component {
                     onChange={this.updateValueHandler}
                     value={this.state.artist}
                 />
+                <br />
                 <button 
                     disabled={this.state.btnIsDisabled} 
                     onSubmit={(event) => {
