@@ -5,20 +5,30 @@ export const FETCH_MUSIC_LIST = 'FETCH_MUSIC_LIST';
 
 export const form_submit = (data) => {
     return function (dispatch) {
-        const post = data;
-        axios.post('/.json', post)
-            .then(setTimeout(() => {
+        axios.post('/.json', data)
+            .then((response) => {
                 axios.get('/.json')
-                .then((response) => dispatch({
-                    type: FETCH_MUSIC_LIST,
-                    data: response.data
-                }))
+                .then((response) => {
+                    dispatch(fetch_music_list());
+                })
                 .catch(error => {
                     console.log('error caught', error);
                 })
-            }, 500))
+            })
     }
 }
+
+// export const form_submit = (data) => {
+//     return function (dispatch) {
+//         axios.post('/.json', data)
+//             .then((response) => {
+//                 dispatch(fetch_music_list());
+//             })
+//             .catch(error => {
+//                 console.log('error caught', error);
+//             });
+//     }
+// };
 
 export const fetch_music_list = () => {
     return function (dispatch) {
