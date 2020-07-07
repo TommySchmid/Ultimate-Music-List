@@ -7,11 +7,14 @@ export const form_submit = (data) => {
     return function (dispatch) {
         axios.post('/.json', data)
             .then((response) => {
-                dispatch(fetch_music_list());
+                axios.get('/.json')
+                .then((response) => {
+                    dispatch(fetch_music_list());
+                })
+                .catch(error => {
+                    console.log('error caught', error);
+                })
             })
-            .catch(error => {
-                console.log('error caught', error);
-            });
     }
 };
 
