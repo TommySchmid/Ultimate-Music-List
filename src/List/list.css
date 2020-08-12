@@ -2,21 +2,6 @@
     text-align: center;
 }
 
-.Headline {
-    color: whitesmoke;
-    background-color: rgb(27, 101, 27);
-}
-
-.listItem {
-    display: inline-block;
-    /* for box-shadown: offset-x | offset-y | blur-radius | spread-radius | color */
-    box-shadow: 2px 2px 2px 2px purple;
-    border-radius: 10% 20%;
-
-    color: rgb(240, 164, 240);
-    background-color: rgb(27, 101, 27);
-}
-
 .listItemContainer {
     display: inline-flex;
     flex-direction: row;

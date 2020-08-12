@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Card } from 'react-bootstrap';
 
 import Auxiliary from '../hoc/Auxiliary/Auxiliary';
 import Form from '../form/form';
@@ -16,22 +17,21 @@ class List extends Component {
 
 
     render() {
-
         return (
             <Auxiliary>
                 <div className="centerItems">
-                    <div className="listItem">The Ultimate Music List</div>
+                    <div>The Ultimate Music List</div>
                     <br />
                     <br />
                     <Form 
                     loaded={this.props.fetchMusicList}
                     />
                     {this.props.fetchedList.map(musicListItem => (
-                        <div className="listItemContainer" key={musicListItem.artist}>
-                            <div className="listItem">
+                        <Card className="listItemContainer" key={musicListItem.artist}>
+                            <div>
                                 {musicListItem.artist}
                             </div>
-                        </div>
+                        </Card>
                     ))}
                 </div>
             </Auxiliary>

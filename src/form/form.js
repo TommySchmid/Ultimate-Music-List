@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { form_submit } from '../store/actions/actions';
 
+import { Button } from 'react-bootstrap';
+
 class Form extends Component {
     state = {
         artist: '',
@@ -18,26 +20,24 @@ class Form extends Component {
 
     render() {
         return (
-            <form onSubmit={(event) => {
-                event.preventDefault();
-                this.props.onFormSubmit(this.state);
-                this.setState({
-                    artist: '',
-                    btnIsDisabled: true
-                });
-            }}>
+            <form>
                 <input
                     type="text"
                     onChange={this.updateValueHandler}
                     value={this.state.artist}
                 />
                 <br />
-                <button 
+                <br />
+                <Button 
                     disabled={this.state.btnIsDisabled} 
-                    onSubmit={(event) => {
+                    onClick={(event) => {
                         event.preventDefault();
                         this.props.onFormSubmit(this.state);
-                }}>Submit</button>
+                        this.setState({
+                            artist: '',
+                            btnIsDisabled: true
+                        });
+                }}>Submit</Button>
             </form>
         );
     }
