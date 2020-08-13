@@ -20,7 +20,15 @@ class Form extends Component {
 
     render() {
         return (
-            <form>
+            <form 
+            onSubmit={(event) => {
+                event.preventDefault();
+                this.props.onFormSubmit(this.state);
+                this.setState({
+                    artist: '',
+                    btnIsDisabled: true
+                });
+        }}>
                 <input
                     type="text"
                     onChange={this.updateValueHandler}
@@ -37,7 +45,8 @@ class Form extends Component {
                             artist: '',
                             btnIsDisabled: true
                         });
-                }}>Submit</Button>
+                }}
+                >Submit</Button>
             </form>
         );
     }
