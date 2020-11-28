@@ -29,7 +29,7 @@ class List extends Component {
         return (
             <Auxiliary>
                 <div className="centerItems">
-                    <div>The Ultimate Music List</div>
+                    <div className="header">The Ultimate Music List</div>
                     <br />
                     <br />
                     <Form />
