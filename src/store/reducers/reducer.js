@@ -11,6 +11,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 musicList: Object.values(action.data)
             }
+        case actionTypes.DELETE_LIST_ITEM:
+            return {
+                musicList: Object.values(action.data)
+            }
         case actionTypes.FETCH_MUSIC_LIST:
             return {
                 ...state,
