@@ -5,6 +5,7 @@ import { Card } from 'react-bootstrap';
 import Auxiliary from '../hoc/Auxiliary/Auxiliary';
 import Form from '../form/form';
 import { fetch_music_list } from '../store/actions/actions';
+import { delete_list_item } from '../store/actions/actions';
 
 
 import './list.css';
@@ -15,22 +16,31 @@ class List extends Component {
         this.props.fetchMusicList();
     }
 
+    // filterMusicList = (e) => {
+    //     if (e.artist !== 'Tennis'){
+    //         return;
+    //     } else {
+    //         console.log(e.artist);
+    //     };
+    // }
 
     render() {
+    
         return (
             <Auxiliary>
                 <div className="centerItems">
                     <div>The Ultimate Music List</div>
                     <br />
                     <br />
-                    <Form 
-                    loaded={this.props.fetchMusicList}
-                    />
+                    <Form />
                     {this.props.fetchedList.map(musicListItem => (
-                        <Card className="listItemContainer" key={musicListItem.artist}>
-                            <div>
-                                {musicListItem.artist}
-                            </div>
+                        <Card 
+                            className="listItemContainer" 
+                            key={musicListItem.artist}
+                            onClick={() => this.props.deleteListItem(musicListItem.artist)}>
+                                <div>
+                                    {musicListItem.artist}
+                                </div>
                         </Card>
                     ))}
                 </div>
@@ -47,7 +57,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchMusicList: () => dispatch(fetch_music_list())
+        fetchMusicList: () => dispatch(fetch_music_list()),
+        deleteListItem: (key) => dispatch(delete_list_item(key))
     };
 };
 
