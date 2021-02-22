@@ -16,14 +16,6 @@ class List extends Component {
         this.props.fetchMusicList();
     }
 
-    // filterMusicList = (e) => {
-    //     if (e.artist !== 'Tennis'){
-    //         return;
-    //     } else {
-    //         console.log(e.artist);
-    //     };
-    // }
-
     render() {
     
         return (
@@ -32,7 +24,7 @@ class List extends Component {
                     <div className="header">The Ultimate Music List</div>
                     <br />
                     <br />
-                    <Form />
+                    <Form listLength = {this.props.fetchedList.length} />
                     {this.props.fetchedList.map(musicListItem => (
                         <Card 
                             className="listItemContainer" 

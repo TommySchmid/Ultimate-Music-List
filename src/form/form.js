@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { form_submit } from '../store/actions/actions';
+import Counter from '../counter/counter';
 
 import { Button } from 'react-bootstrap';
 
@@ -34,8 +35,7 @@ class Form extends Component {
                     onChange={this.updateValueHandler}
                     value={this.state.artist}
                 />
-                <br />
-                <br />
+                <Counter listLength = {this.props.listLength} />
                 <Button 
                     disabled={this.state.btnIsDisabled} 
                     onClick={(event) => {
